@@ -1,0 +1,13 @@
+/**/.idea/**/*
+/**/.ipynb_checkpoints/**/*
+/**/__pycache__/**/*
+/data/**/*
+/logs/**/*
+/weights/**/*
+/tmp/**/*
+/configs/**/*
+!/configs/example.config.json
+!*.gitkeep
+/docker/source/**/*
+*.env
+!/**/example.env
