@@ -11,12 +11,13 @@ import argparse
 
 import openai
 from openai import OpenAI
+
 from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
 
-from src.add_new_background import add_new_background
-from src.config import model_type, sam_checkpoint, device, ROOT_PATH
-from src.delete_background import image_to_mask
-from src.description_generator import description_generator
+from add_new_background import add_new_background
+from config import model_type, sam_checkpoint, device, ROOT_PATH
+from delete_background import image_to_mask, mask_image_generate
+from description_generator import description_generator
 
 
 if __name__ == '__main__':
@@ -52,7 +53,7 @@ if __name__ == '__main__':
     background_filename = args.add_background
     if args.add_background in backgrounds:
         background_filename = os.path.join(ROOT_PATH, "backgrounds", backgrounds[args.add_background])
-    if os.path.isfile(background_filename) is False or all(str(background_filename.name).lower().endswith(i) is False
+    if os.path.isfile(background_filename) is False or all(str(background_filename).lower().endswith(i) is False
                          for i in  ['.png', '.jpg', '.jpeg'] ):
         raise FileExistsError(f"файла заднего фона {background_filename} не существует или имеет недопустимое расширение")
 
@@ -69,6 +70,22 @@ if __name__ == '__main__':
     )
 
     for image_filename in all_files:
-        image_without_background, *_ = image_to_mask(image_filename, mask_generator, background_level=1)
-        image_with_new_background = add_new_background(background_filename, image_without_background)
+        image_without_background, masks, orig_image = image_to_mask(image_filename, mask_generator, background_level=1)
+        image_with_new_background = add_new_background(background_filename, image_without_background.copy())
         description = description_generator(image_filename, client, )
+        print(f"{image_filename}:\n{description}")
+        dir_name = os.path.split(image_filename)[-1].rsplit(".", 1)[0]
+        img_path = os.path.join(args.output_folder, dir_name)
+        os.makedirs(img_path, exist_ok=True)
+
+        # print(orig_image)
+        # print(orig_image.shape, image_without_background.shape, image_with_new_background.shape)
+        
+        original = Image.fromarray((orig_image.astype('uint8')), 'RGB', )
+        original.save(os.path.join(img_path, "original.png"))
+        mask = mask_image_generate(orig_image, masks)
+        mask.save(os.path.join(img_path, "mask.png"))
+        without_background = Image.fromarray((image_without_background.astype('uint8')), 'RGBA', )
+        without_background.save(os.path.join(img_path, "image_without_background.png"))
+        with_new_background = Image.fromarray((image_with_new_background.astype('uint8')), 'RGBA', )
+        with_new_background.save(os.path.join(img_path, "image_with_new_background.png"))

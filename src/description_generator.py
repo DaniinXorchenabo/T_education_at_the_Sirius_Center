@@ -3,7 +3,7 @@ import traceback
 
 import openai
 
-from src.config import DescriptionTypes
+from config import DescriptionTypes
 
 
 def description_generator(image_filename: str, openai_client: openai.Client, gen_pattern:DescriptionTypes = DescriptionTypes.simple):
@@ -35,6 +35,7 @@ def description_generator(image_filename: str, openai_client: openai.Client, gen
         )
         result_msg = completion.choices[0].message
     except Exception as e:
-        print(e, traceback.format_exc())
+        print(e, )
+        # print(traceback.format_exc())
         result_msg = str(e)
     return result_msg
