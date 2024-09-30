@@ -39,3 +39,5 @@ pycocotools
 onnxruntime
 onnx
 git+https://github.com/facebookresearch/segment-anything.git
+python-dotenv
+openai
