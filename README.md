@@ -139,18 +139,5 @@ docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864  -p
 * или путь до файла с изображением, которое необходимо вставить на задний фон
 
 
-![image](https://github.com/user-attachments/assets/a6572684-c4ef-4bec-b198-ed0c6be0cf17)
-
-![image](https://github.com/user-attachments/assets/e9f4f142-8024-468b-908e-a675cc25a8a5)
-
-![image](https://github.com/user-attachments/assets/9fc9785f-0db7-4043-a202-c1b10c052e83)
-
-![image](https://github.com/user-attachments/assets/d2a99569-9241-4bb7-84a5-f3a30f3e6a2a)
-
-![image](https://github.com/user-attachments/assets/603746c2-ec41-4180-92d3-1f0b193e7f0a)
-
-![image](https://github.com/user-attachments/assets/eb6f38fb-4f50-4b2d-889b-b971ac23727c)
-
-![image](https://github.com/user-attachments/assets/18f1ff88-263b-450b-9401-607218a19cec)
 
 
