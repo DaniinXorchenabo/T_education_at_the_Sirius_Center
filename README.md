@@ -86,6 +86,13 @@ changed_image[changed_image[:, :, -1] == 0] = new_background[changed_image[:, :,
 Получилось добиться приемлемых результатов, но система цензуры не пропустила описание для черных штанов...
 Возможность загрузки картинки через АПИ так же отсутствует (по крайней мере в официальной документации).
 
+![image](https://github.com/user-attachments/assets/b67d43ed-9659-496e-8288-1b2ba4453589)
+
+![image](https://github.com/user-attachments/assets/cb535089-8d9e-4d4f-840f-926ec1e73853)
+
+![image](https://github.com/user-attachments/assets/85252594-2f9f-4752-9750-71c5a9ead8a9)
+
+
 * GhatGPT-4o
 
 Более корректные описания товаров по сравнению с GigaChat. 
