@@ -131,7 +131,7 @@ cp ./env/example.env ./env/.env
 
 6. Запустите образ
 ```bash
-docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864  -p 0.0.0.0:8888:8888 -p 0.0.0.0:6006:6006 --rm -it -v .:/workspace/NN  --volume  /$(pwd)/notebooks/jupyter_config:/root/.jupyter  daniinxorchenabo/emotions-classify-env:lighting-cu122-latest python src/main.py --input-folder /workspace/NN/data/raw --output-folder /workspace/NN/data/res 
+docker run --gpus all --ipc=host --ulimit memlock=-1 --ulimit stack=67108864  -p 0.0.0.0:8888:8888 -p 0.0.0.0:6006:6006 --rm -it -v .:/workspace/NN   daniinxorchenabo/emotions-classify-env:lighting-cu122-latest python src/main.py --input-folder /workspace/NN/data/raw --output-folder /workspace/NN/data/res 
 ```
 
 Параметр `--input-folder` -- путь к папке, в которой лежат файлы для обработки
